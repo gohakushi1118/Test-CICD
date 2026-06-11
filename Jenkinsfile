@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Run') {
             steps {
-                bat 'py hello.py'
+                bat 'C:\\Users\\gohak\\AppData\\Local\\Python\\bin\\python.exe hello.py'
             }
         }
         stage('Test') {
             steps {
-                bat 'py -m pytest test_hello.py -v'
+                bat 'C:\\Users\\gohak\\AppData\\Local\\Python\\bin\\python.exe -m pytest test_hello.py -v'
             }
         }
     }
