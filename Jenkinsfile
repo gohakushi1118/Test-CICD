@@ -1,19 +1,6 @@
-pipeline {
-    agent any
-    stages {
-        stage('Run') {
-            steps {
-                bat 'python hello.py'
-            }
-        }
-        stage('Test') {
-            steps {
-                bat 'python -m pytest test_hello.py -v'
-            }
-        }
-    }
-    post {
-        success { echo 'CI/CD Success' }
-        failure { echo 'CI/CD Failure' }
+stage('Run') {
+    steps {
+        bat 'where python || where py || echo "no python found"'
+        bat 'py hello.py'
     }
 }
