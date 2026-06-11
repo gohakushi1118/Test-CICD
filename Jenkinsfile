@@ -1,7 +1,7 @@
 pipeline {
     agent any
     triggers {
-        pollSCM('H/3 * * * *')
+        pollSCM('H/1 * * * *')
     }
     stages {
         stage('Install') {
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                     bat '''
-                        curl -s -X POST ^
+                        curl -sS --ssl-no-revoke -X POST ^
                         -H "Authorization: token %GITHUB_TOKEN%" ^
                         -H "Content-Type: application/json" ^
                         -d "{\\"tag_name\\": \\"v%BUILD_NUMBER%\\", \\"name\\": \\"Release v%BUILD_NUMBER%\\", \\"body\\": \\"Auto release by Jenkins\\"}" ^
